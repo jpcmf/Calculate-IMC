@@ -1,5 +1,5 @@
-//form.js
-//insert new pacient values
+// form.js
+// insert new pacient values
 
 //create var button
 var btnAdd = document.querySelector("#adicionar-paciente");
@@ -17,6 +17,16 @@ btnAdd.addEventListener("click", function() {
   //adding pacient in form
   var pacientTr = constructTr(pacient);
 
+  //create var erros
+  var errors = pacientValidate(pacient);
+  console.log(errors);
+
+  //validate if erros is true
+  if(errors.length > 0) {
+    showMessageError(errors);
+    return;
+  }
+
   //adding pacient in the table
   var table = document.querySelector("#tabela-pacientes");
 
@@ -24,6 +34,11 @@ btnAdd.addEventListener("click", function() {
 
   //clear all fields of form
   form.reset();
+
+  //clear ul after insert new pacient
+  var messageError = document.querySelector("#error-messages");
+  messageError.innerHTML = "";
+
 });
 
 //function extract infos from pacient in form
@@ -76,4 +91,53 @@ function constructTd(data, classe) {
   td.classList.add(classe);
 
   return td;
+}
+
+//function show errors
+function showMessageError(errors) {
+
+  //create ul var
+  var ul = document.querySelector("#error-messages");
+  ul.innerHTML = "";
+
+  //for each li add error message
+  errors.forEach(function(error) {
+    var li = document.createElement("li");
+    li.textContent = error;
+    ul.appendChild(li);
+  });
+}
+
+//function validate pacient
+function pacientValidate(pacient) {
+
+  //array erros
+  var errors = [];
+
+  if(pacient.name.length == 0) {
+    errors.push("Name can not be blank.");
+  }
+
+  if(!validateWeight(pacient.weight)) {
+    // return "";
+    errors.push("Invalid weight!");
+  }
+
+  if(!validateHeight(pacient.height)) {
+    errors.push("Invalid height!");
+  }
+
+  if(pacient.fat.length == 0) {
+    errors.push("Fat can not be blank.");
+  }
+
+  if(pacient.weight.length == 0) {
+    errors.push("Weight can not be blank.");
+  }
+
+  if(pacient.height.length == 0) {
+    errors.push("Height can not be blank.");
+  }
+
+  return errors;
 }

@@ -1,4 +1,4 @@
-//imc.js
+// imc.js
 
 // var title = document.querySelector(".title");
 // title.textContent = "Aparecida Nutricionista!";
@@ -43,11 +43,11 @@ for(var i = 0; i < pacients.length; i++) {
   var tdImc = pacient.querySelector(".info-imc");
 
   //create valid weight/height var
-  var validWeight = true;
-  var validHeight = true;
+  var validWeight = validateWeight(weight); //true or false
+  var validHeight = validateHeight(height); //true or false
 
   //validate weight = false
-  if(weight <= 0 || weight >= 1000 ) {
+  if(!validWeight) {
     console.log("Invalid weight!");
     validWeight = false;
     tdImc.textContent = "Invalid weight!";
@@ -61,7 +61,7 @@ for(var i = 0; i < pacients.length; i++) {
   }
 
   //validate height = false
-  if(height <= 0 || height >= 3.00) {
+  if(!validHeight) {
     console.log("Invalid height!");
     validHeight = false;
     tdImc.textContent = "Invalid height!";
@@ -84,6 +84,24 @@ for(var i = 0; i < pacients.length; i++) {
     tdImc.textContent = imc;
 
     console.log(imc);
+  }
+}
+
+//create function validate weight
+function validateWeight(weight) {
+  if(weight >= 0 && weight < 1000) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//create function validate height
+function validateHeight(height) {
+  if(height >= 0 && height <= 3.00) {
+    return true;
+  } else {
+    return false;
   }
 }
 
