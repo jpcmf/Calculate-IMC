@@ -19,6 +19,8 @@
 		<main>
 			<section class="container">
 				<h2>Meus pacientes</h2>
+				<label class="font-weight-bold" for="filter-table">Filter:</label>
+				<input type="text" name="filter" placeholder="Search pacient" id="filter-table" class="form-control mb-4">
 				<table class="table">
 					<thead class="thead-dark">
 						<tr>
@@ -49,7 +51,7 @@
 						<tr class="paciente" >
 							<td class="info-nome">Erica</td>
 							<td class="info-peso">54</td>
-							<td class="info-altura">-1.64</td>
+							<td class="info-altura">1.64</td>
 							<td class="info-gordura">14</td>
 							<td class="info-imc">0</td>
 						</tr>
@@ -63,7 +65,7 @@
 						</tr>
 						<tr class="paciente" >
 							<td class="info-nome">Tatiana</td>
-							<td class="info-peso">-46</td>
+							<td class="info-peso">46</td>
 							<td class="info-altura">1.55</td>
 							<td class="info-gordura">19</td>
 							<td class="info-imc">0</td>
@@ -103,5 +105,6 @@
 		<script src="js/imc.js" charset="utf-8"></script>
 		<script src="js/form.js" charset="utf-8"></script>
 		<script src="js/remove.js" charset="utf-8"></script>
+		<script src="js/filter.js" charset="utf-8"></script>
 	</body>
 </html>
