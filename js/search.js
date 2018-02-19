@@ -30,7 +30,9 @@ btnSearch.addEventListener("click", function() {
 
     //status 200 positive
     if(xhr.status == 200) {
+
       errorAjax.classList.add("invisible");
+
       var response = xhr.responseText;
       // console.log(response);
       // console.log(typeof response);
@@ -54,8 +56,6 @@ btnSearch.addEventListener("click", function() {
 
       errorAjax.classList.remove("invisible");
     }
-
-
 
   });
 
