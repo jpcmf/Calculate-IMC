@@ -3,14 +3,14 @@
 
 //create pacients var
 var pacients = document.querySelectorAll('.paciente');
-console.log(pacients);
+// console.log(pacients);
 
 //create table var
 var table = document.querySelector("#tabela-pacientes");
 
 //use double click event
 table.addEventListener("dblclick", function(event) {
-  console.log(event.target);
+  // console.log(event.target);
 
   //add class to add fade effect
   event.target.parentNode.classList.add("fade-out");

@@ -14,8 +14,8 @@ btnAdd.addEventListener("click", function() {
   //extract infos from pacient in form
   var pacient = getFormInfos(form);
 
-  //adding pacient in form
-  var pacientTr = constructTr(pacient);
+  //create var pacientTr
+  // var pacientTr = constructTr(pacient);
 
   //create var erros
   var errors = pacientValidate(pacient);
@@ -27,10 +27,11 @@ btnAdd.addEventListener("click", function() {
     return;
   }
 
-  //adding pacient in the table
-  var table = document.querySelector("#tabela-pacientes");
+  addPacientTable(pacient);
 
-  table.appendChild(pacientTr);
+  //create table and adding pacient in the table
+  // var table = document.querySelector("#tabela-pacientes");
+  // table.appendChild(pacientTr);
 
   //clear all fields of form
   form.reset();
@@ -41,14 +42,36 @@ btnAdd.addEventListener("click", function() {
 
 });
 
+//function to insert pacient in the table
+function addPacientTable(pacient) {
+  var pacientTr = constructTr(pacient);
+  var table = document.querySelector("#tabela-pacientes");
+  table.appendChild(pacientTr);
+}
+
+//function show errors
+function showMessageError(errors) {
+
+  //create ul var
+  var ul = document.querySelector("#error-messages");
+  ul.innerHTML = "";
+
+  //for each li add error message
+  errors.forEach(function(error) {
+    var li = document.createElement("li");
+    li.textContent = error;
+    ul.appendChild(li);
+  });
+}
+
 //function extract infos from pacient in form
 function getFormInfos(form) {
 
   var pacient = {
-    name: form.nome.value,
-    weight: form.peso.value,
-    height: form.altura.value,
-    fat: form.gordura.value,
+    nome: form.nome.value,
+    peso: form.peso.value,
+    altura: form.altura.value,
+    gordura: form.gordura.value,
     imc: calculateImc(form.peso.value, form.altura.value)
   }
 
@@ -66,14 +89,14 @@ function constructTr(pacient) {
   // var nameTd = constructTd(pacient.name, "info-nome");
   // var weightTd = constructTd(pacient.weight, "info-peso");
   // var heightTd = constructTd(pacient.height, "info-altura");
-  // var fatTd = constructTd(pacient.fat, "info-gordura");
+  // var gorduraTd = constructTd(pacient.gordura, "info-gordura");
   // var imcTd = constructTd(pacient.imc, "info-imc");
 
   //insert values of td in tr
-  pacientTr.appendChild(constructTd(pacient.name, "info-nome"));
-  pacientTr.appendChild(constructTd(pacient.weight, "info-peso"));
-  pacientTr.appendChild(constructTd(pacient.height, "info-altura"));
-  pacientTr.appendChild(constructTd(pacient.fat, "info-gordura"));
+  pacientTr.appendChild(constructTd(pacient.nome, "info-nome"));
+  pacientTr.appendChild(constructTd(pacient.peso, "info-peso"));
+  pacientTr.appendChild(constructTd(pacient.altura, "info-altura"));
+  pacientTr.appendChild(constructTd(pacient.gordura, "info-gordura"));
   pacientTr.appendChild(constructTd(pacient.imc, "info-imc"));
 
   return pacientTr;
@@ -91,21 +114,6 @@ function constructTd(data, classe) {
   td.classList.add(classe);
 
   return td;
-}
-
-//function show errors
-function showMessageError(errors) {
-
-  //create ul var
-  var ul = document.querySelector("#error-messages");
-  ul.innerHTML = "";
-
-  //for each li add error message
-  errors.forEach(function(error) {
-    var li = document.createElement("li");
-    li.textContent = error;
-    ul.appendChild(li);
-  });
 }
 
 //function validate pacient
@@ -127,7 +135,7 @@ function pacientValidate(pacient) {
     errors.push("Invalid height!");
   }
 
-  if(pacient.fat.length == 0) {
+  if(pacient.gordura.length == 0) {
     errors.push("Fat can not be blank.");
   }
 

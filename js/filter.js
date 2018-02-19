@@ -3,7 +3,7 @@
 
 //create var for input filter
 var filterInput = document.querySelector("#filter-table");
-console.log(filterInput);
+// console.log(filterInput);
 
 
 //add event when user is typing on input
